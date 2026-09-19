@@ -1,0 +1,68 @@
+/*
+  Purple Dragon / Sakura Xbox skin for GamepadViewer.com
+  Built as an edit skin, so Gamepad Viewer keeps handling all live inputs.
+  Base geometry: Gamepad Viewer Xbox One skin, 750 x 630.
+*/
+
+body {
+    background: rgba(0, 0, 0, 0) !important;
+}
+
+/*
+  Layer 1: supplied purple dragon/sakura artwork.
+  Layer 2: Gamepad Viewer's original Xbox shell underneath.
+
+  The custom artwork has transparent cutouts aligned to the live sticks,
+  D-pad, ABXY, View and Menu controls. We deliberately do NOT replace
+  Gamepad Viewer's interactive button/stick elements.
+*/
+.controller.xbox.edit {
+    width: 750px !important;
+    height: 630px !important;
+
+    background-image:
+        url("./skin-overlay.png"),
+        url("https://gamepadviewer.com/xbox-assets/base.svgz") !important;
+
+    background-repeat: no-repeat, no-repeat !important;
+    background-position: 0 0, center center !important;
+    background-size: 750px 630px, 750px 630px !important;
+}
+
+/* Keep the same artwork even if Gamepad Viewer was set to the white Xbox skin. */
+.controller.xbox.edit.white {
+    background-image:
+        url("./skin-overlay.png"),
+        url("https://gamepadviewer.com/xbox-assets/base.svgz") !important;
+}
+
+/* Disconnected state: keep the custom art while using GPV's disconnected base. */
+.controller.xbox.edit.disconnected {
+    background-image:
+        url("./skin-overlay.png"),
+        url("https://gamepadviewer.com/xbox-assets/disconnected.svgz") !important;
+}
+
+/*
+  Remove possible creator/name-watermark pseudo-elements from third-party edit skins.
+  This does not touch Gamepad Viewer's actual controller-input elements.
+*/
+.controller.xbox.edit::before,
+.controller.xbox.edit::after {
+    content: none !important;
+    display: none !important;
+}
+
+/*
+  Explicitly leave live controls enabled/visible.
+  The default Gamepad Viewer Xbox CSS still controls positions, sprites and pressed states.
+*/
+.xbox.edit .triggers,
+.xbox.edit .bumpers,
+.xbox.edit .quadrant,
+.xbox.edit .arrows,
+.xbox.edit .abxy,
+.xbox.edit .sticks,
+.xbox.edit .dpad {
+    visibility: visible !important;
+}
